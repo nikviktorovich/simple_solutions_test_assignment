@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from items import models
+
+
+class ItemAdmin(admin.ModelAdmin):
+    model = models.Item
+
+
+admin.site.register(models.Item, admin_class=ItemAdmin)
