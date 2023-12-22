@@ -38,8 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 3rd party
+    'rest_framework',
+
     # User apps
     'items.apps.ItemsConfig',
+    'payments.apps.PaymentsConfig',
+
 ]
 
 MIDDLEWARE = [
