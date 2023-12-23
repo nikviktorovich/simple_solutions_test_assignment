@@ -5,8 +5,8 @@ from payments import models
 
 class PaymentSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
-    item_id = serializers.IntegerField(source='item.id')
+    order_id = serializers.IntegerField(source='order.id')
 
     class Meta:
         model = models.Payment
-        fields = ('id', 'item_id', 'session_id')
+        fields = ('id', 'order_id', 'session_id')

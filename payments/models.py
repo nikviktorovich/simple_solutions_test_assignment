@@ -4,5 +4,9 @@ import items.models
 
 
 class Payment(models.Model):
-    item = models.ForeignKey(items.models.Item, on_delete=models.CASCADE)
+    order = models.ForeignKey(
+        items.models.Order,
+        on_delete=models.CASCADE,
+        null=False,
+    )
     session_id = models.TextField()

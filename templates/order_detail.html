@@ -1,32 +1,28 @@
-{% extends 'base.html' %}
-
 {% block head %}
 <script src="https://js.stripe.com/v3/"></script>
 {% endblock head %}
 
-{% block title %}Item: {{ item.name }}{% endblock title %}
+{% block title %}Order{% endblock title %}
 
 {% block content %}
-<h2>{{ item.name }}</h2>
-<p>{{ item.description }}</p>
-<p>Price: {{ item.price }}</p>
-<button id="button-buy">Buy</button>
-
-<form action="{% url 'add_to_order' item.pk %}" method="post">
-    {% csrf_token %}
-    <button type="submit">Add to order</button>
-</form>
+<h2>Order</h2>
+<ul>
+    {% for item in items %}
+    <li><a href="{% url 'item_detail' item.pk %}">{{ item.name }}</a></li>
+    {% endfor %}
+    {% if items %}
+    <button id="button-buy">Buy</button>
+    {% endif %}
+</ul>
 {% endblock content %}
 
-{% block bottom %}
 <script>
     const stripe = Stripe("{{ stripe_publishable_api_key }}");
     const buttonBuy = document.querySelector("#button-buy");
     buttonBuy.addEventListener("click", () => {
-        fetch("{% url 'payment_buy' item.pk %}")
+        fetch("{% url 'payment_buy_order' %}")
             .then(response => response.json())
             .then(payment => stripe.redirectToCheckout({ sessionId: payment.session_id }))
             .then(result => console.info(result));
     });
 </script>
-{% endblock bottom %}
