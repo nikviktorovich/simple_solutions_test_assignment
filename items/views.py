@@ -14,5 +14,5 @@ class ItemDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context_data = super().get_context_data(**kwargs)
-        context_data['stripe_api_key'] = settings.STRIPE_API_KEY
+        context_data['stripe_publishable_api_key'] = settings.STRIPE_PUBLISHABLE_API_KEY
         return context_data
