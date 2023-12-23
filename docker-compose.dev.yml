@@ -30,6 +30,7 @@ services:
       - DATABASE_URL=postgres://${DB_USER}:${DB_PASS}@postgres:5432/${DB_NAME}
       - STRIPE_PUBLISHABLE_API_KEY=${STRIPE_PUBLISHABLE_API_KEY}
       - STRIPE_SECRET_API_KEY=${STRIPE_SECRET_API_KEY}
+      - ALLOWED_HOST=${ALLOWED_HOST}
     depends_on:
       postgres:
         condition: service_healthy
