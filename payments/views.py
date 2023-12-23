@@ -64,7 +64,7 @@ class PaymentDetailAPIView(generics.RetrieveAPIView):
 
     def get_return_url(self) -> str:
         item = self.get_object()
-        item_url = reverse_lazy('item_detail', item.pk)
+        item_url = reverse_lazy('item_detail', kwargs={'pk': item.pk})
         return self.request.build_absolute_uri(item_url)
     
 
