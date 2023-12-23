@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
     # 3rd party
     'rest_framework',
+    'corsheaders',
 
     # User apps
     'items.apps.ItemsConfig',
@@ -60,6 +61,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -157,3 +159,20 @@ STRIPE_PUBLISHABLE_API_KEY = env.str('STRIPE_PUBLISHABLE_API_KEY')
 STRIPE_SECRET_API_KEY = env.str('STRIPE_SECRET_API_KEY')
 
 STRIPE_CURRENCY = 'usd'
+
+
+# CORS
+
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1',
+    'http://localhost',
+    'http://0.0.0.0',
+    'http://' + env.str('ALLOWED_HOST', default=''),
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1',
+    'http://localhost',
+    'http://0.0.0.0',
+    'http://' + env.str('ALLOWED_HOST', default=''),
+]
