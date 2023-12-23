@@ -10,6 +10,10 @@ DB_PASS
 
 # Для Django
 DJANGO_SECRET_KEY
+
+# Используется как затычка во время сборки.
+# В production ссылка создается на postgres
+# с указанными выше параметрами
 DATABASE_URL
 
 # Для Stripe
