@@ -135,4 +135,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Stripe
 
-STRIPE_API_KEY = 'pk_test_TYooMQauvdEDq54NiTphI7jx'
+STRIPE_PUBLISHABLE_API_KEY = 'pk_test_TYooMQauvdEDq54NiTphI7jx'
+
+STRIPE_SECRET_API_KEY = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'

@@ -15,7 +15,7 @@
 
 {% block bottom %}
 <script>
-    const stripe = Stripe("{{ stripe_api_key }}");
+    const stripe = Stripe("{{ stripe_publishable_api_key }}");
     const buttonBuy = document.querySelector("#button-buy");
     buttonBuy.addEventListener("click", () => {
         fetch("{% url 'payment_buy' item.pk %}")
