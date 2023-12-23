@@ -10,6 +10,7 @@ DB_PASS
 
 # Для Django
 DJANGO_SECRET_KEY
+ALLOWED_HOST
 
 # Используется как затычка во время сборки.
 # В production ссылка создается на postgres
@@ -26,6 +27,7 @@ STRIPE_SECRET_API_KEY
 Пример содержания `.env` файла:
 ```
 DJANGO_SECRET_KEY=django-insecure-m_6s*qcs4gs_-i$9kl8t2yw!d1h7yavie_e3@bg5q8cr@=8)%f
+ALLOWED_HOST=192.168.1.2
 DB_NAME=testdb
 DB_USER=testuser
 DB_PASS=testpassword
