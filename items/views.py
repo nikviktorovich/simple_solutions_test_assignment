@@ -4,7 +4,7 @@ from typing import Dict
 import django.db.models
 from django.conf import settings
 from django.http import response
-from django.urls import reverse
+from django.urls import reverse_lazy
 from django.views import generic
 
 from items import models
@@ -59,7 +59,7 @@ class AddItemToOrderView(generic.detail.SingleObjectMixin, generic.View):
     def post(self, request, *args, **kwargs):
         item = self.get_object()
         self.add_item_to_order(item) # type: ignore
-        item_url = reverse('item_detail', kwargs={'pk': item.pk})
+        item_url = reverse_lazy('item_detail', kwargs={'pk': item.pk})
         return response.HttpResponseRedirect(item_url)
     
 
