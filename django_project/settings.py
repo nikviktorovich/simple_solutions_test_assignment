@@ -10,8 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-import os
 from pathlib import Path
+
+import environs
+
+env = environs.Env()
+env.read_env()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,15 +26,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    os.environ.get('ALLOWED_HOST', ''),
+    env.str('ALLOWED_HOST', default=''),
 ]
 
 
@@ -91,14 +95,7 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['DB_NAME'],
-        'USER': os.environ['DB_USER'],
-        'PASSWORD': os.environ['DB_PASS'],
-        'HOST': os.environ['DB_HOST'],
-        'PORT': os.environ['DB_PORT'],
-    }
+    'default': env.dj_db_url('DATABASE_URL'),
 }
 
 
@@ -154,8 +151,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Stripe
 
-STRIPE_PUBLISHABLE_API_KEY = os.environ['STRIPE_PUBLISHABLE_API_KEY']
+STRIPE_PUBLISHABLE_API_KEY = env.str('STRIPE_PUBLISHABLE_API_KEY')
 
-STRIPE_SECRET_API_KEY = os.environ['STRIPE_SECRET_API_KEY']
+STRIPE_SECRET_API_KEY = env.str('STRIPE_SECRET_API_KEY')
 
 STRIPE_CURRENCY = 'usd'
